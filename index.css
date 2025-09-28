@@ -31,6 +31,9 @@ body, html {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    width: 90%; /* Make width responsive */
+    max-width: 400px; /* Set a max width */
+    box-sizing: border-box; /* Include padding in width */
     background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 20px;
     border-radius: 20px;
@@ -53,7 +56,8 @@ body, html {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-    padding: 20px;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom)); /* Handle safe area */
+    box-sizing: border-box;
     z-index: 1000;
     transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -287,4 +291,44 @@ body, html {
     margin: -5px 0 5px 0;
     font-size: 1rem;
     color: #555;
+}
+
+/* Media query for smaller mobile devices */
+@media (max-width: 380px) {
+    .instruction-banner {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .bottom-sheet {
+        padding: 15px 15px calc(15px + env(safe-area-inset-bottom));
+        gap: 10px;
+    }
+    
+    .eta-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        font-size: 1rem;
+    }
+
+    .confirm-button, .cancel-button {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+    
+    .match-counter .count {
+        font-size: 2.5rem;
+    }
+    
+    .match-found-view h3 {
+        font-size: 1.1rem;
+    }
+    
+    .match-found-view .success-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+        line-height: 60px;
+    }
 }

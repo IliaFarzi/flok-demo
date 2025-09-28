@@ -1,0 +1,168 @@
+/* Basic Reset & Font */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    overflow: hidden; /* Prevent scrollbars */
+    background-color: #f4f4f4;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Map Container */
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Instruction Banner */
+.instruction-banner {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+/* Bottom Sheet for Path Info */
+.bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bottom-sheet.visible {
+    transform: translateY(0);
+}
+
+.eta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.eta-info .label {
+    font-weight: bold;
+    color: #333;
+}
+
+.eta-info .value {
+    color: #555;
+}
+
+/* Buttons */
+.confirm-button {
+    background-color: #00b14f; /* Green color from image */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.confirm-button:hover {
+    background-color: #009a44;
+}
+
+.reset-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.reset-button:hover {
+    background-color: #c7c7c7;
+}
+
+
+/* Custom Leaflet Marker Icons */
+.start-marker-icon, .end-marker-icon {
+    border-radius: 50%;
+    width: 20px !important;
+    height: 20px !important;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.start-marker-icon {
+    background-color: #4285F4; /* Google Blue */
+    position: relative;
+    z-index: 10;
+}
+
+.end-marker-icon {
+    background-color: #EA4335; /* Google Red */
+}
+
+/* Pulsing animation for start marker */
+.start-marker-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #4285F4;
+    opacity: 0.3;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}

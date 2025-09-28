@@ -186,7 +186,18 @@ function App() {
             iconSize: [26, 26],
             iconAnchor: [13, 13],
         });
-        return L.marker(latlng, { icon: customIcon }).addTo(mapInstance);
+        
+        const tooltipText = type === 'start' ? 'مبدأ' : 'مقصد';
+        
+        const marker = L.marker(latlng, { icon: customIcon }).addTo(mapInstance);
+        marker.bindTooltip(tooltipText, {
+            permanent: true, // Make it always visible
+            direction: 'top', // Position above the marker
+            offset: L.point(0, -15), // Adjust offset
+            className: 'custom-tooltip' // Add a class for styling
+        }).openTooltip();
+        
+        return marker;
     };
 
     const handleConfirm = () => {
@@ -242,7 +253,7 @@ function App() {
                         <h3>{instructionText[selectionState]}</h3>
                         <p className="sub-instruction">لطفا به نقطه شروع حرکت کنید</p>
                         <button className="confirm-button" onClick={handleReset}>
-                            پایان پیاده‌روی
+                            شروع کنید
                         </button>
                     </div>
                 )}

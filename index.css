@@ -167,6 +167,22 @@ body, html {
     }
 }
 
+/* Custom Leaflet Tooltip */
+.custom-tooltip {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none !important;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+    font-weight: bold;
+    color: #333;
+    padding: 4px 8px !important;
+}
+
+.leaflet-tooltip-top:before {
+    border-top-color: transparent !important;
+}
+
+
 /* Searching View Styles */
 .searching-view {
     display: flex;
